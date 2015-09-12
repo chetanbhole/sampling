@@ -165,19 +165,19 @@ class Sampling:
         proposal_line = dpltr.plot_norm_hist(fig_no, 'normalized histogram - ' + self.proposal_distr_str, 
                                              points_proposal, self.num_bins, color='r')
         plt.figure(fig_no)
-        plt.legend(handles=[target_line, proposal_line])
+        plt.legend([target_line, proposal_line])
 
         fig_no = 4
         target_line = dpltr.plot_scaled_pdf(self.target, fig_no, self.target_distr_str + ' pdf', scaled=False, color='b')
         proposal_line = dpltr.plot_scaled_pdf(self.proposal, fig_no, self.proposal_distr_str + ' pdf', scaled=False, color='r')
         plt.figure(fig_no)
-        plt.legend(handles=[target_line, proposal_line])
+        plt.legend([target_line, proposal_line])
 
         fig_no = 5
         target_line = dpltr.plot_scaled_pdf(self.target, fig_no, self.target_distr_str + ' fn scaled pdf', color='b')
         proposal_line = dpltr.plot_scaled_pdf(self.proposal, fig_no, self.proposal_distr_str + ' fn scaled pdf', color='r')
         plt.figure(fig_no)
-        plt.legend(handles=[target_line, proposal_line])
+        plt.legend([target_line, proposal_line])
 
         plt.show()
 
@@ -204,7 +204,7 @@ class Rejection(Sampling):
         proposal_line = dpltr.plot_scaled_pdf(self.proposal, fig_no, self.proposal_distr_str + ' fn scaled pdf', color='r')
         all_legend = [target_line, proposal_line]
         plt.figure(fig_no)
-        plt.legend(handles=all_legend)
+        plt.legend(all_legend)
         
         num_samples = 0
         if interactive:
@@ -232,7 +232,7 @@ class Rejection(Sampling):
                 if first_pass_sample:
                     all_legend.append(line1)
                     first_pass_sample = False
-                    plt.legend(handles=all_legend)
+                    plt.legend(all_legend)
                 draw()
                 pause(0.001)
 
@@ -248,7 +248,7 @@ class Rejection(Sampling):
                     if first_pass_accept:
                         all_legend.append(line2)
                         first_pass_accept = False
-                        plt.legend(handles=all_legend)
+                        plt.legend(all_legend)
                     draw()
                     pause(0.001)
 
@@ -256,7 +256,7 @@ class Rejection(Sampling):
 
         hist_line = dpltr.plot_norm_hist(fig_no, 'sampled norm histogram', s_keep, self.num_bins, color='y')
         all_legend.append(hist_line)
-        plt.legend(handles=all_legend)
+        plt.legend(all_legend)
         plt.show()
         ioff()
 
@@ -315,13 +315,13 @@ class Importance(Sampling):
         proposal_line = dpltr.plot_scaled_pdf(self.proposal, fig_no, self.proposal_distr_str + ' fn scaled pdf', color='r')
         all_legend = [target_line, proposal_line]
         plt.figure(fig_no)
-        plt.legend(handles=all_legend)
+        plt.legend(all_legend)
 
         pline = self.plot_function(fig_no)
         all_legend.append(pline)
         figure(fig_no)
         legend(loc='upper left')
-        plt.legend(handles=all_legend)
+        plt.legend(all_legend)
 
         num_samples = 0
         if interactive:
@@ -346,7 +346,7 @@ class Importance(Sampling):
                     plt.title(sample_str)
                     if first_pass:
                         all_legend.append(line1)
-                        plt.legend(handles=all_legend)
+                        plt.legend(all_legend)
                         first_pass = False
                     cnt = cnt + 1
                     temp_E_fn_sampling = np.dot(imp_weights[:cnt], fn_vals[:cnt])/cnt
@@ -384,7 +384,7 @@ class MetropolisHastings(Sampling):
             target_line = dpltr.plot_scaled_pdf(self.target, fig_no, self.target_distr_str + ' fn scaled pdf', color='b')
             all_legend = [target_line]
             plt.figure(fig_no)
-            plt.legend(handles=all_legend)
+            plt.legend(all_legend)
         
         num_samples = 0
         if interactive:
@@ -424,7 +424,7 @@ class MetropolisHastings(Sampling):
 
                 if first_pass_sample:
                     all_legend.append(line1)
-                    plt.legend(handles=all_legend)
+                    plt.legend(all_legend)
                     first_pass_sample = False
                 draw()
                 pause(0.001)
@@ -452,7 +452,7 @@ class MetropolisHastings(Sampling):
                 plt.title(accepted_str)
                 if first_pass_accept:
                     all_legend.append(line2)
-                    plt.legend(handles=all_legend)
+                    plt.legend(all_legend)
                     first_pass_accept = False
                 draw()
                 pause(0.001)
@@ -467,7 +467,7 @@ class MetropolisHastings(Sampling):
         pline = dpltr.plot_norm_hist(fig_no, 'sampled norm histogram', s_keep, self.num_bins, color='y')
         all_legend = [target_line, pline]
         plt.figure(fig_no)
-        plt.legend(handles=all_legend)
+        plt.legend(all_legend)
   
         plt.show()
         ioff()
